@@ -17,7 +17,8 @@ module.exports = (router) => {
   router.route('/unicodes')
     .post((req, res) => {
       const unicode = new Unicode();
-      unicode.name = req.body.name;
+      // unicode.headers[0].name = req.body.name1;
+      unicode.title = req.body.title;
       unicode.save((err) => {
         if (err) { res.send(err) };
         res.json({ message: 'Unicode created!'})
@@ -42,7 +43,7 @@ module.exports = (router) => {
     .put((req, res) => {
       Unicode.findById(req.params.id, (err, unicode) => {
         if (err) { res.send(err) };
-        unicode.name = req.body.name;
+        unicode.title = req.body.title;
         unicode.save((err) => {
           if (err) { res.send(err) };
           res.json({ message: 'Unicode updated!'})
