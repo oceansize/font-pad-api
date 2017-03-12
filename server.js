@@ -1,19 +1,23 @@
 const express = require('express');
-const mongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
-const db = require('./config/db');
+const mongoose = require('mongoose');
+const db = require('./config/db.js');
+
+mongoose.connect(db.url);
 
 const app = express();
+const router = express.Router();
 
 const port = process.env.PORT || 8080;
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api', router);
 
-mongoClient.connect(db.url, (err, database) => {
-  if (err) return console.log(err);
-  require('./app/routes')(app, database);
+router.get('/', (req, res) => {
+  res.json({ message: 'yolos, api is alife!'})
+})
 
-  app.listen(port, () => {
-    console.log('much magic on port' + port);
-  });
+
+app.listen(port, () => {
+  console.log('much magic on port' + port);
 });
