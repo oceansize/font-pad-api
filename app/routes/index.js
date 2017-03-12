@@ -1,5 +1,5 @@
-const noteRoutes = require('./note_routes');
+const noteRoutes = require('./express-routes');
 
-module.exports = (app, db) => {
-  noteRoutes(app, db);
+module.exports = (router) => {
+  noteRoutes(router);
 }
