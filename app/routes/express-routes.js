@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const db = require('../../config/db.js');
 mongoose.connect(db.url);
@@ -16,14 +18,54 @@ module.exports = (router) => {
 
   router.route('/unicodes')
     .post((req, res) => {
-      console.log(req.body);
+      let c = req.body;
+      function allCells () {
+        let content = []
+        for(let i = 0; i < c.code.length; i += 6) {
+          let cells = [{
+            code: c.code[i],
+            character: c.char[i],
+            name: c.name[i],
+          },{
+            code: c.code[i+1],
+            character: c.char[i+1],
+            name: c.name[i+1],
+          },{
+            code: c.code[i+2],
+            character: c.char[i+2],
+            name: c.name[i+2],
+          },{
+            code: c.code[i+3],
+            character: c.char[i+3],
+            name: c.name[i+3],
+          },{
+            code: c.code[i+4],
+            character: c.char[i+4],
+            name: c.name[i+4],
+          },{
+            code: c.code[i+5],
+            character: c.char[i+5],
+            name: c.name[i+5],
+          }]
+
+          content.push({cells: cells})
+        }
+
+        for (let j = 0; j < c.rowTitle.length; j++) {
+          Object.assign(content[j], {row: c.rowTitle[j]});
+        }
+
+        return content
+      }
+
       const unicode = new Unicode ({
-        language: req.body.language,
-        url: req.body.url,
-        column: req.body.columnTitle
-        content:
+        language: c.language,
+        url: c.url,
+        column: c.columnTitle.map(obj => Object.assign({}, {name: obj})),
+        content: allCells()
       });
-      unicode.save((err) => {
+
+        unicode.save((err) => {
         if (err) { res.send(err) };
         res.json({ message: 'Unicode created!'})
       });
