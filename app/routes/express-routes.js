@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const db = require('../../config/db.js');
 mongoose.connect(db.url);
 
-const Unicode = require('../models/unicode');
+const Unicode = require('../schemas/unicode');
 
 module.exports = (router) => {
   router.use((req, res, next) => {
@@ -16,9 +16,13 @@ module.exports = (router) => {
 
   router.route('/unicodes')
     .post((req, res) => {
-      const unicode = new Unicode();
-      // unicode.headers[0].name = req.body.name1;
-      unicode.title = req.body.title;
+      console.log(req.body);
+      const unicode = new Unicode ({
+        language: req.body.language,
+        url: req.body.url,
+        column: req.body.columnTitle
+        content:
+      });
       unicode.save((err) => {
         if (err) { res.send(err) };
         res.json({ message: 'Unicode created!'})

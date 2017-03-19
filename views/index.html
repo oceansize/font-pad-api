@@ -3,12 +3,62 @@
   <head>
     <meta charset="utf-8">
     <title>TEST API</title>
+    <style media="screen">
+      body {
+        font-family: monospace;
+      }
+    </style>
   </head>
   <body>
-    <h2>FORM MCFORMFACE</h2>
-    <form class="test" action="api/unicodes" method="post">
-      <!-- Header Name1:<input type="text" name="name1" value=""> -->
-      Title:<input type="text" name="title" value="">
-    </form>
+    <table>
+      <tr><th> FORM MCFORMFACE </th></tr>
+      <form class="test" action="api/unicodes" method="post">
+        <tr class='form__language'><td><input type="text" name="language" placeholder='Language'></td></tr>
+        <tr class='form__url'><td><input type="text" name="url" placeholder='url'></td></tr>
+        <tr class='form__column-title'>
+          <td></td>
+          <td><input type="text" name="columnTitle" placeholder='Column Title'></td>
+          <td><input type="text" name="columnTitle" placeholder='Column Title'></td>
+          <td><input type="text" name="columnTitle" placeholder='Column Title'></td>
+          <td><input type="text" name="columnTitle" placeholder='Column Title'></td>
+          <td><input type="text" name="columnTitle" placeholder='Column Title'></td>
+          <td><input type="text" name="columnTitle" placeholder='Column Title'></td>
+        </tr>
+        <tr class='form__row-title'>
+          <td><input type="text" name="rowTitle" placeholder='Row Title'></td>
+          <td class='form__cell'>
+             <input type="text" name="cellCode" placeholder="Code">
+             <input type="text" name="cellCharacter" placeholder="Character">
+             <input type="text" name="cellName" placeholder="Name">
+          </td>
+          <td class='form__cell'>
+             <input type="text" name="cellCode" placeholder="Code">
+             <input type="text" name="cellCharacter" placeholder="Character">
+             <input type="text" name="cellName" placeholder="Name">
+          </td>
+          <td class='form__cell'>
+             <input type="text" name="cellCode" placeholder="Code">
+             <input type="text" name="cellCharacter" placeholder="Character">
+             <input type="text" name="cellName" placeholder="Name">
+          </td>
+          <td class='form__cell'>
+             <input type="text" name="cellCode" placeholder="Code">
+             <input type="text" name="cellCharacter" placeholder="Character">
+             <input type="text" name="cellName" placeholder="Name">
+          </td>
+          <td class='form__cell'>
+             <input type="text" name="cellCode" placeholder="Code">
+             <input type="text" name="cellCharacter" placeholder="Character">
+             <input type="text" name="cellName" placeholder="Name">
+          </td>
+          <td class='form__cell'>
+             <input type="text" name="cellCode" placeholder="Code">
+             <input type="text" name="cellCharacter" placeholder="Character">
+             <input type="text" name="cellName" placeholder="Name">
+          </td>
+        </tr>
+        <tr><td><input type="submit" value="Submit"></td></tr>
+      </form>
+    </table>
   </body>
 </html>
