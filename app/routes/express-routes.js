@@ -1,19 +1,16 @@
 'use strict';
 
+const createUnicode = require('../schema-helpers/create')
+
 const mongoose = require('mongoose');
 const db = require('../../config/db.js');
 mongoose.connect(db.url);
 
-const createUnicode = require('../schema-helpers/create')
 
 module.exports = (router) => {
   router.use((req, res, next) => {
     console.log('summin\'s happenin...');
     next();
-  })
-
-  router.get('/', (req, res) => {
-    res.json({ message: 'yolos, api is alife!'})
   })
 
   router.route('/unicodes')

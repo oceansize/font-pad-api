@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
   res.sendfile('views/index.html')
 })
 
-require('./app/routes')(router, {});
+require('./app/routes')(router);
 
 app.listen(port, () => {
-  console.log('much magic on port' + port);
+  console.log('much magic on port: ' + port);
 });

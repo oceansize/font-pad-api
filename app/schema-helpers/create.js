@@ -46,7 +46,7 @@ module.exports = (input) => {
   return new Unicode ({
     language: input.language,
     url: input.url,
-    column: input.columnTitle.map(obj => Object.assign({}, {name: obj})),
+    column: input.columnTitle.map(name => Object.assign({}, { name })),
     content: allCells(input)
   });
 }

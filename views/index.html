@@ -10,13 +10,121 @@
       table {
         width: 60%;
       }
+
       input[type="text"] {
-          width: 100px;
-          height: 25px;
+        width: 100px;
+        height: 25px;
+      }
+
+      input[name="code"] {
+        display: none;
       }
     </style>
   </head>
   <body>
+    <script type="text/javascript">
+      function setPrefix () {
+        let prefix = document.querySelector("input[name=prefix]").value
+        if (prefix.length > 2) {
+          alert(`Whoops! That's ${prefix.length-2} characters too many. This field only accepts 2 characters.`);
+          return;
+        };
+        let columnCell = document.querySelectorAll("input[name='columnTitle']");
+        let rows = document.querySelectorAll("input[name='rowTitle']");
+        let codeCell = document.querySelectorAll("input[name='code']");
+        let characterCell = document.querySelectorAll("input[name='char']");
+
+        for (let i = 0; i < columnCell.length; i++) {
+          columnCell[i].value = `U${prefix.toUpperCase()}${i+1}x`
+        };
+
+        for (let i = 0; i < codeCell.length; i += 6) {
+          let y = (i === 0) ? 0 : (i / 6);
+          codeCell[i].value = `\\U${prefix}1${rows[y].value}`;
+          codeCell[i+1].value = `\\U${prefix}2${rows[y].value}`;
+          codeCell[i+2].value = `\\U${prefix}3${rows[y].value}`;
+          codeCell[i+3].value = `\\U${prefix}4${rows[y].value}`;
+          codeCell[i+4].value = `\\U${prefix}5${rows[y].value}`;
+          codeCell[i+5].value = `\\U${prefix}6${rows[y].value}`;
+        }
+
+        for (let i = 0; i < characterCell.length; i += 6) {
+          let y = (i === 0) ? 0 : (i / 6);
+          characterCell[i].value = `U+${prefix.toUpperCase()}1${rows[y].value}`;
+          characterCell[i+1].value = `U+${prefix.toUpperCase()}2${rows[y].value}`;
+          characterCell[i+2].value = `U+${prefix.toUpperCase()}3${rows[y].value}`;
+          characterCell[i+3].value = `U+${prefix.toUpperCase()}4${rows[y].value}`;
+          characterCell[i+4].value = `U+${prefix.toUpperCase()}5${rows[y].value}`;
+          characterCell[i+5].value = `U+${prefix.toUpperCase()}6${rows[y].value}`;
+        }
+
+      };
+
+      function formConfig () {
+        // R in  uxxRx –or– P in uxxxP
+        let range = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+        let first = document.querySelector("input[name='first'").value.toUpperCase();
+        let last = document.querySelector("input[name='last'").value.toUpperCase();
+        let columnRange = range.slice(range.indexOf(first), (range.indexOf(last) + 1));
+
+        let table = document.getElementsByClassName('testy')[0];
+
+        for (number in range) {
+          table.append(createRow(columnRange, range[number]));
+        }
+      }
+
+      function createRow (range, number) {
+        let row = document.createElement('tr');
+        let title = document.createElement('td');
+        let rowName = document.createElement('input');
+        rowName.type = 'text';
+        rowName.name = 'rowTitle';
+        rowName.value = number;
+        title.appendChild(rowName);
+        row.appendChild(title);
+
+        for (position in range) {
+          row.appendChild(createCharacterCell());
+        }
+        console.log(row);
+        return row;
+      }
+
+      function createCharacterCell () {
+        let cell = document.createElement('td');
+        let code = document.createElement('input');
+        code.type = 'text';
+        code.name = 'code';
+
+        let char = document.createElement('input');
+        char.type = 'text';
+        char.name = 'char';
+
+        let name = document.createElement('input');
+        name.type = 'text';
+        name.name = 'name';
+        name.placeholder = 'Name';
+
+        cell.appendChild(code);
+        cell.appendChild(char);
+        cell.appendChild(name);
+
+        return cell;
+      }
+    </script>
+
+    <div class="prefix">
+      U<input type="text" name="prefix" value="AA">xx
+      <input type="button" name="button" value="Set Prefix" onclick="setPrefix()">
+
+      <br>
+      UXX<input type="text" name="first" value="">X
+      UXX<input type="text" name="last" value="">X
+      <input type="button" name="button" value="test" onclick="formConfig()">
+
+    </div>
+    <table class='testy'></table>
     <table>
       <tr><th> FORM MCFORMFACE </th></tr>
       <form class="test" action="api/unicodes" method="post">
