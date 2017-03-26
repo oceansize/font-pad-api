@@ -3,35 +3,29 @@
 const Unicode = require('../schemas/unicode');
 
 function allCells (input) {
-  let content = []
-  for(let i = 0; i < input.code.length; i += 6) {
-    let cells = [{
-      code: input.code[i],
-      character: input.char[i],
-      name: input.name[i],
-    },{
-      code: input.code[i+1],
-      character: input.char[i+1],
-      name: input.name[i+1],
-    },{
-      code: input.code[i+2],
-      character: input.char[i+2],
-      name: input.name[i+2],
-    },{
-      code: input.code[i+3],
-      character: input.char[i+3],
-      name: input.name[i+3],
-    },{
-      code: input.code[i+4],
-      character: input.char[i+4],
-      name: input.name[i+4],
-    },{
-      code: input.code[i+5],
-      character: input.char[i+5],
-      name: input.name[i+5],
-    }]
 
-    content.push({cells: cells})
+  let content = []
+
+  //length of columntitle array
+  //create cell for each item in above array,
+  //push into content array,
+  //repeat for the number of rows (16)
+  let cells = [];
+  for(let i = 0; i < input.code.length; i++) {
+    console.log(input.code.splice(i, input.columnTitle.length));
+    // input.columnTitle.forEach(item => {
+    //   console.log(item);
+    //   let obj = {
+    //     code: input.code[i+input.columnTitle.indexOf(item)],
+    //     char: input.char[i+input.columnTitle.indexOf(item)],
+    //     name: input.name[i+input.columnTitle.indexOf(item)]
+    //   }
+    //   cells.push(obj);
+    // })
+
+    content.push({ cells });
+
+    i += input.columnTitle.length
   }
 
   for (let j = 0; j < input.rowTitle.length; j++) {

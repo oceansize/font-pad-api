@@ -1,0 +1,15 @@
+body {
+  font-family: monospace;
+}
+table {
+  width: 60%;
+}
+
+input[type="text"] {
+  width: 100px;
+  height: 25px;
+}
+
+input[name="code"] {
+  display: none;
+}
