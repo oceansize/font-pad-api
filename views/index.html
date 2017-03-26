@@ -23,6 +23,7 @@
   </head>
   <body>
     <script type="text/javascript">
+    //have to change this completely
       function setPrefix () {
         let prefix = document.querySelector("input[name=prefix]").value
         if (prefix.length > 2) {
@@ -74,6 +75,19 @@
         }
       }
 
+
+        <tr class='form__language'><td><input type="text" name="language" placeholder='Language'></td></tr>
+        <tr class='form__url'><td><input type="text" name="url" placeholder='url'></td></tr>
+        <tr class='form__column-title'>
+          <td></td>
+          <td><input type="text" name="columnTitle" value='UAA1x'></td>
+          <td><input type="text" name="columnTitle" value='UAA0x'></td>
+          <td><input type="text" name="columnTitle" value='UAA2x'></td>
+          <td><input type="text" name="columnTitle" value='UAA3x'></td>
+          <td><input type="text" name="columnTitle" value='UAA4x'></td>
+          <td><input type="text" name="columnTitle" value='UAA5x'></td>
+        </tr>
+      }
       function createRow (range, number) {
         let row = document.createElement('tr');
         let title = document.createElement('td');
