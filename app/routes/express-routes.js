@@ -16,6 +16,7 @@ module.exports = (router) => {
   router.route('/unicodes')
     .post((req, res) => {
         let unicode = createUnicode(req.body);
+        console.log(unicode);
         unicode.save((err) => {
         if (err) { res.send(err) };
         res.json({ message: 'Unicode created!'})

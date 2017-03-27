@@ -18,7 +18,7 @@ function formConfig () {
   let cell = document.createElement('td');
   let input = document.createElement('input');
   input.type = 'submit';
-  input.value = 'value';
+  input.value = 'Submit ';
   cell.appendChild(input);
   row.appendChild(cell)
   table.appendChild(row);
