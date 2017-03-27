@@ -10,29 +10,32 @@ function allCells (input) {
   //create cell for each item in above array,
   //push into content array,
   //repeat for the number of rows (16)
-  let cells = [];
-  for(let i = 0; i < input.code.length; i++) {
-    console.log(input.code.splice(i, input.columnTitle.length));
-    // input.columnTitle.forEach(item => {
-    //   console.log(item);
-    //   let obj = {
-    //     code: input.code[i+input.columnTitle.indexOf(item)],
-    //     char: input.char[i+input.columnTitle.indexOf(item)],
-    //     name: input.name[i+input.columnTitle.indexOf(item)]
-    //   }
-    //   cells.push(obj);
-    // })
+
+  for (let i = 0; i < input.code.length; i += input.columnTitle.length) {
+    let code = input.code.slice(i, i + input.columnTitle.length);
+    let char = input.char.slice(i, i + input.columnTitle.length);
+    let name = input.name.slice(i, i + input.columnTitle.length);
+
+    code = code.map(code => Object.assign({}, { code }));
+    char = char.map(char => Object.assign({}, { char }));
+    name = name.map(name => Object.assign({}, { name }));
+
+
+    let cells = [];
+
+    for (let y = 0; y < code.length; y++) {
+      cells.push(Object.assign(code[y], char[y], name[y]));
+    }
 
     content.push({ cells });
-
-    i += input.columnTitle.length
   }
 
   for (let j = 0; j < input.rowTitle.length; j++) {
-    Object.assign(content[j], {row: input.rowTitle[j]});
+    Object.assign(content[j], { row: input.rowTitle[j] });
   }
 
-  return content
+  console.log(content);
+  return content;
 }
 
 

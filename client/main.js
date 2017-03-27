@@ -62,7 +62,7 @@ function createRow (prefix, range, number) {
   return row;
 }
 
-function createCharacterCell (prefix, position) {
+function createCharacterCell (prefix, position, number) {
   let language = document.querySelector("input[name='language']").value.toUpperCase();
   let cell = document.createElement('td');
   let code = document.createElement('input');
