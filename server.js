@@ -14,6 +14,14 @@ app.get('/', (req, res) => {
   res.sendfile('views/index.html')
 })
 
+app.get('/unicode-form', (req, res) => {
+  res.sendfile('views/form.html')
+})
+
+app.get('/success', (req, res) => {
+  res.sendfile('views/success.html')
+})
+
 require('./app/routes')(router);
 
 app.listen(port, () => {

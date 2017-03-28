@@ -1,7 +1,7 @@
 'use strict';
 
-const createUnicode = require('../schema-helpers/create')
-
+const denerateDocument = require('../schema-helpers/create');
+const Unicode = require('../schemas/unicode');
 const mongoose = require('mongoose');
 const db = require('../../config/db.js');
 mongoose.connect(db.url);
@@ -15,11 +15,11 @@ module.exports = (router) => {
 
   router.route('/unicodes')
     .post((req, res) => {
-        let unicode = createUnicode(req.body);
+        let unicode = new Unicode (denerateDocument(req.body));
         console.log(unicode);
         unicode.save((err) => {
         if (err) { res.send(err) };
-        res.json({ message: 'Unicode created!'})
+        res.redirect('/success');
       });
     })
 

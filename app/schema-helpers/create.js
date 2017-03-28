@@ -40,10 +40,10 @@ function allCells (input) {
 
 
 module.exports = (input) => {
-  return new Unicode ({
+  return {
     language: input.language,
     url: input.url,
     column: input.columnTitle.map(name => Object.assign({}, { name })),
     content: allCells(input)
-  });
+  };
 }
