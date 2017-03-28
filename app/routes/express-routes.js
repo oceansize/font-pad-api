@@ -32,10 +32,11 @@ module.exports = (router) => {
 
   router.route('/unicodes/:id')
     .get((req, res) => {
-      Unicode.findById(req.params.id, (err, unicode) => {
+      Unicode.findOne({ language: req.params.id.toLowerCase() }, (err, language) => {
         if (err) { res.send(err) };
-        res.json(unicode);
+        res.json(language);
       })
+
     })
 
     .put((req, res) => {

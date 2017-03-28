@@ -34,14 +34,13 @@ function allCells (input) {
     Object.assign(content[j], { row: input.rowTitle[j] });
   }
 
-  console.log(content);
   return content;
 }
 
 
 module.exports = (input) => {
   return {
-    language: input.language,
+    language: input.language.toLowerCase(),
     url: input.url,
     column: input.columnTitle.map(name => Object.assign({}, { name })),
     content: allCells(input)

@@ -8,7 +8,10 @@ function formConfig () {
 
   let table = document.querySelector('.testy');
   table.innerHTML = '';
+
+
   table.appendChild(createColumn(prefix, columnRange));
+  table.appendChild(document.querySelector("input[name='language']"));
 
   for (number in range) {
     table.appendChild(createRow(prefix, columnRange, range[number]));
