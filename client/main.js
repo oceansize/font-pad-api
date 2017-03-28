@@ -35,7 +35,7 @@ function createColumn(prefix, range) {
 
 
   for (position in range) {
-    let columnTitle = document.createElement('td');
+    let columnTitle = document.createElement('th');
     let input = document.createElement('input');
     input.type = 'text';
     input.name = 'columnTitle';
@@ -68,6 +68,8 @@ function createRow (prefix, range, number) {
 function createCharacterCell (prefix, position, number) {
   let language = document.querySelector("input[name='language']").value.toUpperCase();
   let cell = document.createElement('td');
+  cell.className = 'cell';
+
   let code = document.createElement('input');
   code.type = 'text';
   code.name = 'code';

@@ -36,11 +36,10 @@ module.exports = (router) => {
         if (err) { res.send(err) };
         res.json(language);
       })
-
     })
 
     .put((req, res) => {
-      Unicode.findById(req.params.id, (err, unicode) => {
+      Unicode.findOne(req.params.id, (err, unicode) => {
         if (err) { res.send(err) };
         unicode.title = req.body.title;
         unicode.save((err) => {
@@ -51,9 +50,7 @@ module.exports = (router) => {
     })
 
     .delete((req, res) => {
-      Unicode.remove({
-        _id: req.params.id
-      }, (err, bear) => {
+      Unicode.remove({ language: req.params.id.toLowerCase() }, (err, language) => {
         if (err) { res.send(err) };
         res.json({ message: 'Unicode deleted!'});
       })

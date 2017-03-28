@@ -1,13 +1,25 @@
 body {
   font-family: monospace;
 }
+
 table {
   width: 60%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.prefix {
+  text-align: center;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
 }
 
 input[type="text"] {
-  width: 100px;
+  width: 10vw;
   height: 25px;
+  text-align: center;
 }
 
 input[name="code"] {
