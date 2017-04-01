@@ -1,6 +1,6 @@
 'use strict';
 
-const denerateDocument = require('../schema-helpers/create');
+const generateDocument = require('../schema-helpers/create');
 const Unicode = require('../schemas/unicode');
 const mongoose = require('mongoose');
 const db = require('../../config/db.js');
@@ -13,10 +13,10 @@ module.exports = (router) => {
     next();
   })
 
-  router.route('/unicodes')
+  router.route('/')
     .post((req, res) => {
-        let unicode = new Unicode (denerateDocument(req.body));
-        console.log(unicode);
+      console.log(req.body);
+        let unicode = new Unicode (generateDocument(req.body));
         unicode.save((err) => {
         if (err) { res.send(err) };
         res.redirect('/success');
@@ -30,7 +30,7 @@ module.exports = (router) => {
       })
     })
 
-  router.route('/unicodes/:id')
+  router.route('/:id')
     .get((req, res) => {
       Unicode.findOne({ language: req.params.id.toLowerCase() }, (err, language) => {
         if (err) { res.send(err) };

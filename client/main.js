@@ -5,16 +5,16 @@ function formConfig () {
   let first = document.querySelector("input[name='first'").value.toUpperCase();
   let last = document.querySelector("input[name='last'").value.toUpperCase();
   let columnRange = range.slice(range.indexOf(first), (range.indexOf(last) + 1));
+  let language = document.querySelector("input[name='language']").value.toUpperCase();
 
   let table = document.querySelector('.testy');
   table.innerHTML = '';
 
 
-  table.appendChild(createColumn(prefix, columnRange));
-  table.appendChild(document.querySelector("input[name='language']"));
+  table.appendChild(createHeaderRow(prefix, columnRange));
 
-  for (number in range) {
-    table.appendChild(createRow(prefix, columnRange, range[number]));
+  for (let number of range) {
+    table.appendChild(createRow(prefix, columnRange, number));
   }
 
   let row = document.createElement('tr');
@@ -27,14 +27,13 @@ function formConfig () {
   table.appendChild(row);
 }
 
-function createColumn(prefix, range) {
+function createHeaderRow(prefix, range) {
   let row = document.createElement('tr');
-  let cell = document.createElement('td');
+  let cell = document.createElement('td'); //empty cell
 
-  row.appendChild(cell);
+  row.appendChild(cell); //adds an empty cell to beginning of row
 
-
-  for (position in range) {
+  for (let position in range) {
     let columnTitle = document.createElement('th');
     let input = document.createElement('input');
     input.type = 'text';
@@ -58,7 +57,7 @@ function createRow (prefix, range, number) {
   title.appendChild(rowName);
   row.appendChild(title);
 
-  for (position in range) {
+  for (let position in range) {
     row.appendChild(createCharacterCell(prefix, position, number));
   }
 
@@ -68,7 +67,6 @@ function createRow (prefix, range, number) {
 function createCharacterCell (prefix, position, number) {
   let language = document.querySelector("input[name='language']").value.toUpperCase();
   let cell = document.createElement('td');
-  cell.className = 'cell';
 
   let code = document.createElement('input');
   code.type = 'text';

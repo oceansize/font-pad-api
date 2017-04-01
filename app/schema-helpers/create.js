@@ -40,7 +40,7 @@ function allCells (input) {
 
 module.exports = (input) => {
   return {
-    language: input.language.toLowerCase(),
+    // language: input.language.toLowerCase(),
     url: input.url,
     column: input.columnTitle.map(name => Object.assign({}, { name })),
     content: allCells(input)
