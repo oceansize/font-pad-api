@@ -4,17 +4,19 @@ function formConfig () {
   let range = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
   let first = document.querySelector("input[name='first'").value.toUpperCase();
   let last = document.querySelector("input[name='last'").value.toUpperCase();
-  let columnRange = range.slice(range.indexOf(first), (range.indexOf(last) + 1));
+  let rowRange = range.slice(range.indexOf(first), (range.indexOf(last) + 1));
   let language = document.querySelector("input[name='language']").value.toUpperCase();
 
   let table = document.querySelector('.testy');
   table.innerHTML = '';
 
 
-  table.appendChild(createHeaderRow(prefix, columnRange));
+  // table.appendChild(createHeaderRow(prefix, columnRange));
+  table.appendChild(createHeaderRow(prefix, range))
 
-  for (let number of range) {
-    table.appendChild(createRow(prefix, columnRange, number));
+  for (let number of rowRange) {
+    // table.appendChild(createRow(prefix, columnRange, number));
+    table.appendChild(createRow(prefix, range, number));
   }
 
   let row = document.createElement('tr');
@@ -33,12 +35,13 @@ function createHeaderRow(prefix, range) {
 
   row.appendChild(cell); //adds an empty cell to beginning of row
 
-  for (let position in range) {
+  for (let value of range) {
     let columnTitle = document.createElement('th');
     let input = document.createElement('input');
     input.type = 'text';
     input.name = 'columnTitle';
-    input.value = `U${prefix}${range[position]}x`;
+    // input.value = `U${prefix}${value}x`;
+    input.value = value;
     columnTitle.appendChild(input);
     row.appendChild(columnTitle);
   }
@@ -53,11 +56,12 @@ function createRow (prefix, range, number) {
   let rowName = document.createElement('input');
   rowName.type = 'text';
   rowName.name = 'rowTitle';
-  rowName.value = number;
+  // rowName.value = number;
+  rowName.value = `U${prefix}${number}x`;
   title.appendChild(rowName);
   row.appendChild(title);
 
-  for (let position in range) {
+  for (let position of range) {
     row.appendChild(createCharacterCell(prefix, position, number));
   }
 
@@ -71,12 +75,12 @@ function createCharacterCell (prefix, position, number) {
   let code = document.createElement('input');
   code.type = 'text';
   code.name = 'code';
-  code.value = `\\U${prefix}${position}${number}`;
+  code.value = `\\U${prefix}${number}${position}`;
 
   let char = document.createElement('input');
   char.type = 'text';
   char.name = 'char';
-  char.value = `U+${prefix}${position}${number}`;
+  char.value = `U+${prefix}${number}${position}`;
 
   let name = document.createElement('input');
   name.type = 'text';
